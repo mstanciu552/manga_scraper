@@ -1,10 +1,12 @@
 #!/bin/bash
 
-options=$(node convert_to_list.js | awk -F '->' '{print $1}')
-links=$(node convert_to_list.js | awk -F '->' '{print $2}')
+# node index.js &>/dev/null
 
-selection="$(echo -e "$options" | dmenu -i -p 'Choose Manga')"
+command=$(node convert_to_list.js)
 
-echo "${selection}"
+options=$(echo -e "$command" | awk -F '->' '{print $1}')
+links=$(echo -e "$command" | awk -F '->' '{print $2}')
 
-xdg-open $selection
+selection="$(echo -e "$command" | dmenu -i -p 'Choose Manga')"
+
+echo "$selection" | awk -F '->' '{print $2}' | xargs -I {} xdg-open {}

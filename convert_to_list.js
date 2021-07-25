@@ -6,7 +6,7 @@ function convert_to_options() {
   let options = {};
 
   for (let entry of manga) {
-    let key = `${entry.title} - ${entry.lastChapter}`;
+    let key = `${entry.title} - ${entry.lastChapter} - ${entry.lastDate}`;
     let value = `${entry.link}`;
     options[key] = value;
   }
