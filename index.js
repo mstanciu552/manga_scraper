@@ -1,4 +1,5 @@
 import puppeteer from 'puppeteer';
+import fs from 'fs';
 
 const url = 'https://m.manganelo.com/w';
 
@@ -25,7 +26,7 @@ const favorites = [
 ];
 (async () => {
   // Starting the browser and going to specified page
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto(url, {
     waitUntil: 'networkidle2',
@@ -117,6 +118,7 @@ const favorites = [
   }
   console.log('-----------------------------------------------------------');
   console.log('Manga Info', mangaInfo);
+  fs.writeFileSync("./manga.json", JSON.stringify(mangaInfo, null, 4));
   // Close the browser when done
   await browser.close();
 })();

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+options=$(node convert_to_list.js | awk -F '->' '{print $1}')
+links=$(node convert_to_list.js | awk -F '->' '{print $2}')
+
+selection="$(echo -e "$options" | dmenu -i -p 'Choose Manga')"
+
+echo "${selection}"
+
+xdg-open $selection
