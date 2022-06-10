@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer';
 import fs from 'fs';
 
-const url = 'https://m.manganelo.com/w';
+const url = 'https://m.manganelo.com/www';
 
 const favorites = [
   'I Am The Sorcerer King',
@@ -24,6 +24,7 @@ const favorites = [
   'Volcanic Age',
   'Immortal, Invincible',
 ];
+
 (async () => {
   // Starting the browser and going to specified page
   const browser = await puppeteer.launch({ headless: true });
@@ -48,7 +49,7 @@ const favorites = [
   }
 
   // Loops through the first page of new manga and gets any that match the favorites array
-  console.log('First Check');
+  console.log('Initial Check');
   console.log('-----------------------------------------------------------');
   manga.forEach(m => {
     if (favorites.includes(m.title)) {
@@ -57,7 +58,7 @@ const favorites = [
   });
   console.log('-----------------------------------------------------------\n');
 
-  console.log('Second Check');
+  console.log('In depth check. This might take a while...');
   console.log('-----------------------------------------------------------');
   // Loop through all favorites manga
   let mangaInfo = [];
